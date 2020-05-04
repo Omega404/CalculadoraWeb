@@ -1,5 +1,4 @@
-import State from "./State";
-
+import State from './State'
 
 
 //Servidor y complementos
@@ -23,10 +22,9 @@ var calcular = { }
 
 //Get / Recibir pagina
 
-app.get('/', function(req,res){
-    res.render(__dirname, '/index.html');
+app.get('/',function(req,res){
+    res.render('result',{dato : 0});
 });
-
 
 //Post / Mandar Datos Ingresados
 
@@ -43,6 +41,11 @@ function total(req,res){
     if(req.body.cmd == ""){
         alert("Ingrese un comando Correcto");
     }
+    else if(calcular["1"] == "Syntax Error"){
+        calcular["1"] = null;
+        alert("Se debe de ingresar numero, operador, numero");
+    }
+    
     else{
 
         //Almacenar Datos   // Enviar Datos // Calcular Datos 
@@ -55,8 +58,12 @@ function total(req,res){
         else if(calcular["2"] == null){
             calcular["2"] = req.body.cmd;
 
+            str = calcular["1"] + " " +  calcular["2"];
+
+            /*
             str = str.concat(calcular["1"]);
             str = str.concat(calcular["2"]);
+            */
 
             res.render('result', {dato: str});
         }
@@ -70,6 +77,11 @@ function total(req,res){
             
             calcular["1"]= State.RealizarOp(calcular["1"],calcular["2"],calcular["3"]);
             str = calcular["1"];
+            
+
+            // Borrar datos
+            calcular["2"] = null;
+            calcular["3"] = null;
 
             res.render('result', {dato: str});
         }
