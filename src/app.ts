@@ -1,9 +1,10 @@
 import State from './State'
 
 
+
 //Servidor y complementos
 
-console.log('Server on port 3000');
+console.log('Server on port 5000');
 
  const es6Renderer = require('express-es6-template-engine');
 var express = require('express');
@@ -23,7 +24,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var calcular = { 
     result: 0,
-    str: null,
+    str: "",
 }
 
 
@@ -31,7 +32,12 @@ var calcular = {
 
 app.get('/',function(req,res){
 
-    res.render('result',{dato : calcular["result"]});
+    res.render('result',{comandos: calcular});
+});
+
+app.get('/comandos',function(req,res){
+
+    res.render('result',{comandos: calcular});
 });
 
 //Post / Mandar Datos Ingresados
@@ -61,7 +67,7 @@ function total(req,res){
             calcular["1"] = req.body.cmd;
 
             calcular["str"] = calcular["1"];
-            res.render('result', {dato: calcular["str"]});
+            res.render('result', {comandos: calcular});
            
         }
 
@@ -70,10 +76,12 @@ function total(req,res){
 
             calcular["str"] = calcular["str"] + " " +  calcular["2"];
 
-            res.render('result', {dato: calcular});
+            res.render('result', {comandos: calcular});
 
         }
         else{
+
+            // Arreglar para calcular sin el 3er comando
 
             //Mandar a calculadora
             calcular["3"] = req.body.cmd;
@@ -92,7 +100,7 @@ function total(req,res){
             calcular["3"] = null;
 
 
-            res.render('result', {dato: calcular["result"]});
+            res.render('result', {comandos: calcular});
 
         }
     }
