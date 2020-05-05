@@ -8,7 +8,7 @@ console.log('Server on port 3000');
  const es6Renderer = require('express-es6-template-engine');
 var express = require('express');
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(5000);
 
 app.engine('html', es6Renderer);
 app.set('views', 'views');
@@ -21,13 +21,17 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //Datos de comandos ingresados
 
-var calcular = { }
+var calcular = { 
+    result: 0,
+    str: null,
+}
 
 
 //Get / Recibir pagina
 
 app.get('/',function(req,res){
-    res.render('index',{dato : 0});
+
+    res.render('result',{dato : calcular["result"]});
 });
 
 //Post / Mandar Datos Ingresados
@@ -39,7 +43,6 @@ app.post('/',urlencodedParser, total);
 // Funcion
 
 function total(req,res){
-    var str;
 
 
     if(req.body.cmd == ""){
@@ -56,20 +59,19 @@ function total(req,res){
 
         if(calcular["1"] == null){
             calcular["1"] = req.body.cmd;
-            res.render('index', {dato: calcular["1"]});
+
+            calcular["str"] = calcular["1"];
+            res.render('result', {dato: calcular["str"]});
+           
         }
 
         else if(calcular["2"] == null){
             calcular["2"] = req.body.cmd;
 
-            str = calcular["1"] + " " +  calcular["2"];
+            calcular["str"] = calcular["str"] + " " +  calcular["2"];
 
-            /*
-            str = str.concat(calcular["1"]);
-            str = str.concat(calcular["2"]);
-            */
+            res.render('result', {dato: calcular});
 
-            res.render('index', {dato: str});
         }
         else{
 
@@ -80,14 +82,18 @@ function total(req,res){
             //str va a recibir el resultado de calculadora
             
             calcular["1"]= State.RealizarOp(calcular["1"],calcular["2"],calcular["3"]);
-            str = calcular["1"];
-            
+            calcular["str"] = null;
+
+            calcular["result"] = calcular["1"];
 
             // Borrar datos
+            calcular["1"] = null;
             calcular["2"] = null;
             calcular["3"] = null;
 
-            res.render('index', {dato: str});
+
+            res.render('result', {dato: calcular["result"]});
+
         }
     }
     
