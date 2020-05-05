@@ -21,7 +21,8 @@
   "homepage": "https://github.com/JulianRaso/CalculadoraWeb#readme",
   "dependencies": {
     "ejs": "^3.1.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-es6-template-engine": "^2.2.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",

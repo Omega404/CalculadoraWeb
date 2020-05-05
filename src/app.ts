@@ -3,13 +3,17 @@ import State from './State'
 
 //Servidor y complementos
 
-console.log('Server start');
+console.log('Server on port 3000');
 
+ const es6Renderer = require('express-es6-template-engine');
 var express = require('express');
 var app = express();
 var server = app.listen(5000);
 
-app.set('view engine', 'ejs');
+app.engine('html', es6Renderer);
+app.set('views', 'views');
+app.set('view engine', 'html'); 
+app.set('view engine','ejs');
 
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json()
@@ -28,12 +32,11 @@ var calcular = {
 app.get('/',function(req,res){
 
     res.render('result',{dato : calcular["result"]});
-    
 });
 
 //Post / Mandar Datos Ingresados
 
-app.post('/comandos',urlencodedParser, total);
+app.post('/',urlencodedParser, total);
 
 
 
@@ -56,9 +59,10 @@ function total(req,res){
 
         if(calcular["1"] == null){
             calcular["1"] = req.body.cmd;
+
             calcular["str"] = calcular["1"];
             res.render('result', {dato: calcular["str"]});
-            
+           
         }
 
         else if(calcular["2"] == null){
@@ -67,6 +71,7 @@ function total(req,res){
             calcular["str"] = calcular["str"] + " " +  calcular["2"];
 
             res.render('result', {dato: calcular});
+
         }
         else{
 
@@ -86,7 +91,9 @@ function total(req,res){
             calcular["2"] = null;
             calcular["3"] = null;
 
+
             res.render('result', {dato: calcular["result"]});
+
         }
     }
     
