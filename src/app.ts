@@ -1,6 +1,4 @@
 import State from './State'
-import calcula2 from './calcula2'
-import traducir from './Traducir'
 
 //Servidor y complementos
 console.log('Server on port 3000');
@@ -44,14 +42,21 @@ function total(req,res){
 
         //Almacenar Datos   // Enviar Datos // Calcular Datos 
 
-        if(calcular["result"] == "Syntax Error"){
-            calcular["result"] = "0";
-            res.render('result', {comandos: calcular});
-        }
-        else if(calcular["1"] == null){
-            calcular["1"] = req.body.cmd;
-            calcular["str"] = calcular["1"];
-            res.render('result', {comandos: calcular});
+        if(calcular["1"] == null){
+
+            if(calcular["result"] == "Syntax Error"){
+                calcular["result"] = "0";
+                calcular["1"] = req.body.cmd;
+                calcular["str"] = calcular["1"];
+                res.render('result', {comandos: calcular});
+                
+            }
+            else{
+                calcular["1"] = req.body.cmd;
+                calcular["str"] = calcular["1"];
+                res.render('result', {comandos: calcular});
+            }
+
         }
 
         //Ultimo problema, carga pero no calcula
@@ -59,7 +64,7 @@ function total(req,res){
         else if(calcular["2"] == null){
 
             if(calcular["result"] != "0"){
-                calcular["1"]= State.RealizarOp(calcular["result"],calcular["1"],req.body.cmd);
+                calcular["1"]= State.Realizar(calcular["result"],calcular["1"],req.body.cmd);
                 calcular["result"] = calcular["1"];
 
                 // Borrar datos
