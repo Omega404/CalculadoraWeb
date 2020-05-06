@@ -9,7 +9,7 @@ console.log('Server on port 5000');
  const es6Renderer = require('express-es6-template-engine');
 var express = require('express');
 var app = express();
-var server = app.listen(5000);
+var server = app.listen(3000);
 
 app.engine('html', es6Renderer);
 app.set('views', 'views');
