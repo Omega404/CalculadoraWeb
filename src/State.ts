@@ -7,7 +7,7 @@ export class State {
     static Num1;
     static Num2;
 
-    static RealizarOp(a:string,b:string,c:string){
+    static RealizarOp(a,b:string,c:string){
         let err = "Syntax Error";
 
         this.Num1 = a;
@@ -17,10 +17,9 @@ export class State {
         if( Oper == "suma"){
             
             if(this.Num1 = String){
-            this.Num1 = a.replace(/\s/g, "");
-
-            this.Num1 = traducir.Traductir(this.Num1);
-            this.Num2 = traducir.Traductir(this.Num2);
+                this.Num1 = a.replace(/\s/g, "");
+                this.Num1 = traducir.Traductir(this.Num1);
+                this.Num2 = traducir.Traductir(this.Num2);
             return calculadora.sumar(this.Num1,this.Num2);
             }
             else{
@@ -30,9 +29,7 @@ export class State {
         }
         else if( Oper == "resta"){
             if(this.Num1 == String){
-
                 this.Num1 = a.replace(/\s/g, "");
-
                 this.Num1 = traducir.Traductir(this.Num1);
                 this.Num2 = traducir.Traductir(this.Num2);
                 return calculadora.restar(this.Num1,this.Num2);
@@ -45,10 +42,9 @@ export class State {
         else if( Oper == "multiplicar"){
 
             if(this.Num1 == String){
-            this.Num1 = a.replace(/\s/g, "");
-
-            this.Num1 = traducir.Traductir(this.Num1);
-            this.Num2 = traducir.Traductir(this.Num2);
+                this.Num1 = a.replace(/\s/g, "");
+                this.Num1 = traducir.Traductir(this.Num1);
+                this.Num2 = traducir.Traductir(this.Num2);
             return calculadora.multiplicar(this.Num1,this.Num2);
             }
             else{
@@ -61,7 +57,6 @@ export class State {
 
             if(this.Num1 == String){
                 this.Num1 = a.replace(/\s/g, "");
-    
                 this.Num1 = traducir.Traductir(this.Num1);
                 this.Num2 = traducir.Traductir(this.Num2);
                 return calculadora.dividir(this.Num1,this.Num2);
@@ -72,12 +67,10 @@ export class State {
             }
         }
         
-
         else{
             return err
         }
         
-            
     }
 
 }
