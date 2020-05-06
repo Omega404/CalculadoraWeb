@@ -9,17 +9,21 @@
   <meta http-equiv="refresh" content="5">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+
 </head>
 <body>
-
+<style>
+  body{
+    background-color:lightslategrey;
+  }
+</style>
   
   <div class="container">
 
 
     <div class="text-center">
+      <br>
       <h1>Calculadora Infinita</h1>
     </div>
 
@@ -36,20 +40,22 @@
           <h5>Ingrese un comando:</h5>
 
           <form id="datos-enviados" method ="POST" action="/">
-            
             <input type="text" name="cmd" value="">
-            <input type="submit">
-
+            <br><br>
+            <span class="float-left">
+              <button type="button" class="btn btn-dark btn-sm">Enviar</button>
+            </span>
           </form>
+            
+          </div>
           
         </div>
-
       </div>
-    
-    </div>
       
   </div>
-    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
 
